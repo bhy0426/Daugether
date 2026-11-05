@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c830518ec1f494e45a30770f8e733a28
+guid: f123b8df2b38f7347a7a06f8ae9ecf49
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Hands_Right_Stop_Sign_Anim_0
+      name: Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b835a0bda3bb3fd4db8f5d79ebe82ffa
-      internalID: -2071854814
+      spriteID: 5267ded87793e0746ba196ec3586b34d
+      internalID: -2112047397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Hands_Right_Stop_Sign_Anim_1
+      name: Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 545bd2fa891da9c4386975b4f3803c9a
-      internalID: -2060289231
+      spriteID: bbdd40dbbbbce3243a0fad90fc7620dd
+      internalID: 615541924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Hands_Right_Stop_Sign_Anim_2
+      name: Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8287fefa54a12c74186e742ac967a6bf
-      internalID: -2089128364
+      spriteID: ec723b3244697ca458de884b98983fc6
+      internalID: 2118230730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Hands_Right_Stop_Sign_Anim_3
+      name: Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_3
       rect:
         serializedVersion: 2
         x: 96
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9621046a8a88a44eab944bde0cbcc0e
-      internalID: 1901174909
+      spriteID: 2feadf7c2c1b0294ebff1b8ac0366d92
+      internalID: -1236627118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Hands_Right_Stop_Sign_Anim_4
+      name: Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_4
       rect:
         serializedVersion: 2
         x: 128
@@ -195,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7fdbb21d9c35da4d8b12e3cd305a5e0
-      internalID: -105196682
+      spriteID: 963189201d38b8e4d8690293d883c0ca
+      internalID: 1012477032
       vertices: []
       indices: 
       edges: []
@@ -212,11 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Hands_Right_Stop_Sign_Anim_0: -2071854814
-      Player_Hands_Right_Stop_Sign_Anim_1: -2060289231
-      Player_Hands_Right_Stop_Sign_Anim_2: -2089128364
-      Player_Hands_Right_Stop_Sign_Anim_3: 1901174909
-      Player_Hands_Right_Stop_Sign_Anim_4: -105196682
+      Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_0: -2112047397
+      Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_1: 615541924
+      Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_2: 2118230730
+      Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_3: -1236627118
+      Player_Hands_Right_Stop_Sign_Anim-Sheet-Sheet_4: 1012477032
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

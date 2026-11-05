@@ -9,13 +9,11 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Transform target;
 
-    bool isHit;
-    [SerializeField]
-    int hp = 10;
+    [SerializeField] bool isHit;
+    [SerializeField] int hp = 10;
     float hitTime = 0.5f;
 
-    [SerializeField]
-    float speed;
+    [SerializeField] private float speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +22,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(!isHit)
         {
@@ -37,6 +35,7 @@ public class Enemy : MonoBehaviour
     public void Hit()
     {
         isHit = true;
+        rigid.velocity = Vector2.zero;
         Invoke("disableHit", hitTime);
         hp -= 1;
         spriteRenderer.color = Color.red;

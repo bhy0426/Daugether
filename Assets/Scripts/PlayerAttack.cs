@@ -4,43 +4,31 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    private Player player;
     public Collider2D[] enemies;
     [SerializeField]
     Collider2D nearestEnemy = null;
     [SerializeField]
     float nearestDis = float.PositiveInfinity;
-    bool isAttack = false;
-    float attackDur = 1f;
-    float attackRange = 0.6f;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        // circleCollider2D.GetComponent<CircleCollider2D>();
+        player = GetComponent<Player>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Attack()
     {
-        // Debug.DrawRay(transform.position, transform.forward * 2f, Color.red);
-
-        if (Input.GetButtonDown("Fire1"))
+        if (player.canAttack)
         {
-            Attack();
-        }
-    }
-
-    void Attack()
-    {
-        if (!isAttack)
-        {
-            isAttack = true;
+            player.isAttack = true;
+            player.canAttack = false;
 
             // 가까운 적을 찾아서 nearestEnemy에 저장
             nearestEnemy = null;
             nearestDis = float.PositiveInfinity;
 
-            enemies = Physics2D.OverlapCircleAll(transform.position, attackRange);
+            enemies = Physics2D.OverlapCircleAll(transform.position, player.attackRange);
 
             foreach (Collider2D enemy in enemies)
             {
@@ -64,7 +52,8 @@ public class PlayerAttack : MonoBehaviour
                 Debug.Log("근처에 적이 없음");
             }
 
-            Invoke("AttackCoolDown", attackDur);
+            Invoke("DisableIsAttack", player.attackDur);
+            Invoke("EnableCanAttack", player.attackCoolDown);
         }
         else
         {
@@ -72,14 +61,19 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     
-    void AttackCoolDown()
+    void DisableIsAttack()
     {
-        isAttack = false;
+        player.isAttack = false;
+    }
+
+    void EnableCanAttack()
+    {
+        player.canAttack = true;
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, player.attackRange);
     }
 }

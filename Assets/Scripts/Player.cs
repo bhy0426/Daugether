@@ -4,47 +4,74 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rigid;
-    public Transform hand_right;
-    public Transform hand_left;
-    [SerializeField]
-    float speed;
-    Vector2 moveDir;
-    Vector2 mouse;
-    float angle_left;
-    float angle_right;
+    // 컴포넌트
+    private Rigidbody2D rigid;
+    private PlayerAttack playerAttack;
+    private PlayerMove playerMove;
+    private PlayerLook playerLook;
+    private Animator anim;
 
+    // 팔 오브젝트
+    public Transform handsRight;
+    public Transform handsLeft;
+    public Animator handsRightAnim;
+    public Vector2[] handsRightPos;
+
+    // 상태
+    public float moveSpeed;
+    public float rollSpeed;
+    public float roolDuration; // 구르기 지속 시간
+    public float rollCoolDown; // 구르기 쿨타임
+    public bool isRoll = false;
+    public bool canRoll = true;
+    public bool isAttack = false;
+    public bool canAttack = true;
+    public float attackDur = 0.125f;
+    public float attackCoolDown = 1f;
+    public float attackRange = 0.6f;
+    public float attackMultiplier = 2f;
+    // public float Speed => speed; 와 동일, 읽기 전용 프로퍼티라는 의미
 
     // Start is called before the first frame update
     void Awake()
     {
-        rigid.GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
+        playerAttack = GetComponent<PlayerAttack>();
+        playerMove = GetComponent<PlayerMove>();
+        playerLook = GetComponent<PlayerLook>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed * Time.fixedDeltaTime;
+        // 플레이어 시선 조작
+        playerLook.Look(handsRight, handsLeft);
 
-        mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        angle_right = Mathf.Atan2(mouse.y - hand_right.position.y, mouse.x - hand_right.position.x) * Mathf.Rad2Deg;
-        angle_left = Mathf.Atan2(mouse.y - hand_left.position.y, mouse.x - hand_left.position.x) * Mathf.Rad2Deg;
+        // 오른손 위치 이동
+        handsRight.localPosition = isAttack ? handsRightPos[1] : handsRightPos[0];
 
-        if (hand_right.position.x < mouse.x)
+        // 오른손 공격 애니메이션
+        handsRightAnim.SetBool("isAttack", isAttack);
+        handsRightAnim.SetFloat("AttackMultiplier", attackMultiplier);
+
+        // 구르기 애니메이션
+        anim.SetBool("isRoll", isRoll);
+
+        // 공격
+        if (Input.GetButtonDown("Fire1"))
         {
-            hand_right.localRotation = Quaternion.Euler(0, 0, angle_right);
-            hand_left.localRotation = Quaternion.Euler(0, 0, angle_left);
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            playerAttack.Attack();
         }
-        else if (hand_right.position.x > mouse.x)
+
+        // 공격
+        if (Input.GetButtonDown("Jump"))
         {
-            hand_right.localRotation = Quaternion.Euler(0, 0, -(angle_right + 180f));
-            hand_left.localRotation = Quaternion.Euler(0, 0, -(angle_left + 180f));
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-        } 
+            playerMove.Roll(roolDuration, rollCoolDown);
+        }
     }
 
     void FixedUpdate()
     {
-        rigid.MovePosition(rigid.position + moveDir);
+        playerMove.Move(rigid, moveSpeed, rollSpeed);
     }
 }
